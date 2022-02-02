@@ -1,3 +1,4 @@
+
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
@@ -6,6 +7,7 @@ public class gb_modules : ModuleRules
 {
 	public gb_modules(ReadOnlyTargetRules Target) : base(Target)
 	{
+
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[]
@@ -16,9 +18,9 @@ public class gb_modules : ModuleRules
 			"InputCore",
 			"HeadMountedDisplay",
 		});
-		// PrivateDependencyModuleNames.AddRange(new string[]
-		// {
-		// 	"InventorySystem",
-		// });
+		 PrivateDependencyModuleNames.AddRange(new string[]
+		 {
+			"InventorySystem",
+		 });
 	}
 }

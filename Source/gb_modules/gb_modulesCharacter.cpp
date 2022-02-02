@@ -52,6 +52,7 @@ Agb_modulesCharacter::Agb_modulesCharacter()
 
 void Agb_modulesCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
@@ -74,6 +75,11 @@ void Agb_modulesCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &Agb_modulesCharacter::OnResetVR);
+}
+
+void Agb_modulesCharacter::BeginPlay()
+{
+	Super::BeginPlay();
 }
 
 

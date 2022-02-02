@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InventoryCharacter.h"
 #include "GameFramework/Character.h"
 #include "gb_modulesCharacter.generated.h"
 
+
 UCLASS(config=Game)
-class Agb_modulesCharacter : public ACharacter
+class Agb_modulesCharacter : public AInventoryCharacter
 {
 	GENERATED_BODY()
 
@@ -68,5 +70,7 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	virtual void BeginPlay() override;
 };
 
