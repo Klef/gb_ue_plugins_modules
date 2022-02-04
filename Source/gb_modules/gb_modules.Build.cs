@@ -17,6 +17,7 @@ public class gb_modules : ModuleRules
 			"Engine",
 			"InputCore",
 			"HeadMountedDisplay",
+			"MediaAssets",
 		});
 		 PrivateDependencyModuleNames.AddRange(new string[]
 		 {
