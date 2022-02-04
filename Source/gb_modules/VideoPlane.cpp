@@ -38,16 +38,13 @@ void AVideoPlane::BeginPlay()
 			if (OutFileNames.Num() > 0)
 			{
 				Path = OutFileNames[0];
+				UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
+				MediaSource->FilePath = Path;
+				MediaPlayer->OpenSource(MediaSource);
+				UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
+				Comp->SetMediaPlayer(MediaPlayer);
+				Comp->RegisterComponent();
 			}
-		}
-		if (Path == "")
-		{
-			UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
-			MediaSource->FilePath = Path;
-			MediaPlayer->OpenSource(MediaSource);
-			UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
-			Comp->SetMediaPlayer(MediaPlayer);
-			Comp->RegisterComponent();
 		}
 	}
 
