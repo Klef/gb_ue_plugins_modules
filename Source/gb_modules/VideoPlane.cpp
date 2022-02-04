@@ -40,7 +40,7 @@ void AVideoPlane::BeginPlay()
 				Path = OutFileNames[0];
 			}
 		}
-		if (!Path.Empty())
+		if (Path == "")
 		{
 			UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
 			MediaSource->FilePath = Path;
