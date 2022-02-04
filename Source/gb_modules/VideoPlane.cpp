@@ -1,7 +1,7 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "VideoPlane.h"":,:","",
+#include "VideoPlane.h"
 #include "DesktopPlatformModule.h"
 #include "FileMediaSource.h"
 #include "IDesktopPlatform.h"
