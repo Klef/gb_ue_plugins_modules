@@ -2,7 +2,10 @@
 
 
 #include "VideoPlane.h"
+
+#include "DesktopPlatformModule.h"
 #include "FileMediaSource.h"
+#include "IDesktopPlatform.h"
 #include "MediaPlayer.h"
 #include "MediaSoundComponent.h"
 
@@ -20,13 +23,33 @@ void AVideoPlane::BeginPlay()
 	Super::BeginPlay();
 	if (MediaPlayer)
 	{
-		FString Path = "D:\\repo\\1984.mp4";
-		UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
-		MediaSource->FilePath = Path;
-		MediaPlayer->OpenSource(MediaSource);
-		UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
-		Comp->SetMediaPlayer(MediaPlayer);
-		Comp->RegisterComponent();
+		TArray<FString> OutFileNames;
+		FString Path;
+		IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();
+		if (DesktopPlatform)
+		{
+			FString FileTypes = "All Files(*.PNG;*.JPG;*.MP4)|*.PNG;*.JPG;*.MP4|"
+							"Image Files(*.PNG;*.JPG;)|*.PNG;*.JPG;|"
+							"Video Files(*.MP4)|*.MP4";
+			uint32 SelectionFlag = 0;
+			DesktopPlatform->OpenFileDialog(
+				FSlateApplication::Get().FindBestParentWindowHandleForDialogs(nullptr),
+				"Choose content", "", "", FileTypes, SelectionFlag, OutFileNames);
+
+			if (OutFileNames.Num() > 0)
+			{
+				Path = OutFileNames[0];
+			}
+		}
+		if (!Path.Empty())
+		{
+			UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
+			MediaSource->FilePath = Path;
+			MediaPlayer->OpenSource(MediaSource);
+			UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
+			Comp->SetMediaPlayer(MediaPlayer);
+			Comp->RegisterComponent();
+		}
 	}
 
 }
