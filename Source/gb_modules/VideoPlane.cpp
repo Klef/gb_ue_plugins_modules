@@ -4,6 +4,7 @@
 #include "VideoPlane.h"
 #include "FileMediaSource.h"
 #include "MediaPlayer.h"
+#include "MediaSoundComponent.h"
 
 
 // Sets default values
@@ -23,6 +24,9 @@ void AVideoPlane::BeginPlay()
 		UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
 		MediaSource->FilePath = Path;
 		MediaPlayer->OpenSource(MediaSource);
+		UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
+		Comp->SetMediaPlayer(MediaPlayer);
+		Comp->RegisterComponent();
 	}
 
 }
