@@ -39,19 +39,21 @@ void AVideoPlane::BeginPlay()
 			if (OutFileNames.Num() > 0)
 			{
 				Path = OutFileNames[0];
-				
-				// UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
-				// MediaSource->FilePath = Path;
-				// MediaPlayer->OpenSource(MediaSource);
-				// UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
-				// Comp->SetMediaPlayer(MediaPlayer);
-				// Comp->RegisterComponent();
-
-				UTexture2D * Texture = UKismetRenderingLibrary::ImportFileAsTexture2D(this, Path);
+				PlayVideo(Path);
 			}
 		}
 	}
 
+}
+
+void AVideoPlane::PlayVideo(FString Path)
+{
+	UFileMediaSource * MediaSource = NewObject<UFileMediaSource>();
+	MediaSource->FilePath = Path;
+	MediaPlayer->OpenSource(MediaSource);
+	UMediaSoundComponent * Comp = NewObject<UMediaSoundComponent>(this);
+	Comp->SetMediaPlayer(MediaPlayer);
+	Comp->RegisterComponent();
 }
 
 
