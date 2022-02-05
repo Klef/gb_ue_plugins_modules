@@ -26,5 +26,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	UFUNCTION(BlueprintCallable)
 	void PlayVideo(FString Path);
 };

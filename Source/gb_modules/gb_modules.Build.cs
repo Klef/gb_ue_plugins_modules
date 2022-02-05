@@ -19,7 +19,10 @@ public class gb_modules : ModuleRules
 			"HeadMountedDisplay",
 			"MediaAssets",
 			"Slate",
+			"SlateCore", 
 			"DesktopPlatform",
+			"UMG", 
+			"MediaAssets", 
 		});
 		 PrivateDependencyModuleNames.AddRange(new string[]
 		 {
